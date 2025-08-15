@@ -114,8 +114,78 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# WhatsApp Floating Button
+--------------------------------------------------------------*/
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 40px;
+  right: 15px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 90px;
+  height: 90px;
+}
+
+/*--------------------------------------------------------------
 # Intro Section
 --------------------------------------------------------------*/
+.scroll-down-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: #1dc8cd;
+  text-decoration: none;
+  animation: bounce 2s infinite;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-down-btn:hover {
+  color: #0fa3a3;
+}
+
+.img-flecha {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  /*background-image: url("../animacion/img/flecha.png");*/
+  background-size: cover;
+  vertical-align: middle;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.scroll-down-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
 #intro {
   width: 100%;
@@ -1192,7 +1262,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 
 #footer {
-  background: #fff;
+  /*background: #fff;*/
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
   padding: 30px 0;
   color: #333;

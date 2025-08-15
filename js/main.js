@@ -129,3 +129,13 @@ jQuery(document).ready(function($) {
   // custom code
 
 });
+
+
+document.addEventListener("scroll", function () {
+  const scrollDownBtn = document.querySelector(".scroll-down-btn");
+  if (window.scrollY > 50) {
+    scrollDownBtn.classList.add("hidden");
+  } else {
+    scrollDownBtn.classList.remove("hidden");
+  }
+});
