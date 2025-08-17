@@ -139,3 +139,38 @@ document.addEventListener("scroll", function () {
     scrollDownBtn.classList.remove("hidden");
   }
 });
+
+
+const audioElement = document.getElementById('background-sound');
+
+  // Reproducir sonido al cargar la página
+  window.addEventListener('load', () => {
+  audioElement.play().catch(() => {
+    console.log('El usuario debe interactuar primero con la página.');
+  });
+});
+
+  // Reproducir sonido al hacer scroll
+  window.addEventListener('scroll', () => {
+    if (audioElement.paused) {
+      //audioElement.play();
+    }
+  });
+
+  // Función para reproducir sonido manualmente
+  function playSound() {
+  audioElement.play();
+}
+
+function toggleSound() {
+  const audioElement = document.getElementById('background-sound');
+  const soundIcon = document.getElementById('sound-icon');
+
+  if (audioElement.paused) {
+    audioElement.play();
+    soundIcon.src = 'img/pausa.png'; // Cambia al icono de pausa
+  } else {
+    audioElement.pause();
+    soundIcon.src = 'img/play.png'; // Cambia al icono de play
+  }
+}
