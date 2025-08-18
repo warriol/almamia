@@ -2,10 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+
   <title>Alma Mía Terapias</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="alma,mía,terapias,reiki,yoga">
-  <meta content="" name="Master en terapias, yoga, reiki">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Wilson Denis Arriola" />
+  <meta name="keywords" content="Wilson Arriola,Dieño,Programación,Uruguay,Montevideo"/>
+  <meta name="description" content="Sitio web para Liliana, Maestra Reiki Usui, Master en Yoga, Médium en Angeología. Montevideo, Uruguay.">
+  <meta name="Subjetc" content="Soy Maestra Reiki Usui, Master en Yoga, Médium en Angeología, Lectura en Registros Akáshicos, Limpieza de casas, negocios y de personas con Pédulo, Auriculoterapia, Barras y Áreas de vida, Numerología, Biodecodificadora Biológica. Te puedo ayudar. Contáctame." />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="es-UY" />
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -28,6 +35,9 @@
 
   <!-- Main Stylesheet File -->
   <link rel="stylesheet" href="animacion/css/templatemo-style.css">
+
+  <!-- Agregar el script de reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -631,9 +641,9 @@
 
           <div class="col-lg-5 col-md-8">
             <div class="form">
-              <div id="sendmessage">Su mensaje ha sido enviado. ¡Gracias!</div>
+              <div id="responseMessage" style="display:none; margin-top: 10px;"></div>
               <div id="errormessage"></div>
-              <form action="" method="post" role="form" class="contactForm">
+              <form id="contactFrom" role="form" class="contactForm">
                 <div class="form-row">
                   <div class="form-group col-lg-6">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Porfavor, ingrese al menos 4 carácteres." />
@@ -651,6 +661,10 @@
                 <div class="form-group">
                   <textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Mensaje" placeholder="Mensaje"></textarea>
                   <div class="validation"></div>
+                </div>
+                <!-- reCAPTCHA -->
+                <div class="form-group">
+                  <div class="g-recaptcha" data-sitekey="6LcUp8cqAAAAAP1i6DsbtL7PT9quooVQSg6u7zPw"></div>
                 </div>
                 <div class="text-center"><button type="submit" title="Enviar">Enviar</button></div>
               </form>

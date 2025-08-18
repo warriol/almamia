@@ -1,12 +1,16 @@
 jQuery(document).ready(function($) {
   "use strict";
 
-  //Contact
-  $('form.contactForm').submit(function() {
-    var f = $(this).find('.form-group'),
-        ferror = false;
+  // Contact Form Submission
+  $('form.contactForm').submit(async function(e) {
+    e.preventDefault(); // Prevent default form submission
 
-    f.children('input, textarea').each(function() { // run all inputs
+    var form = $(this);
+    var f = form.find('.form-group');
+    var ferror = false;
+
+    // Validate inputs
+    f.children('input, textarea').each(function() {
       var i = $(this); // current input
       var rule = i.attr('data-rule');
 
@@ -46,17 +50,49 @@ jQuery(document).ready(function($) {
 
     if (ferror) return false;
 
-    // Build WhatsApp message
-    var name = $('#name').val();
-    var email = $('#email').val();
-    var subject = $('#subject').val();
-    var message = $('#message').val();
-    var whatsappNumber = '59892373973';
-    var whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=Nombre:%20${encodeURIComponent(name)}%0ACorreo:%20${encodeURIComponent(email)}%0AAsunto:%20${encodeURIComponent(subject)}%0AMensaje:%20${encodeURIComponent(message)}`;
+    // Prepare form data
+    var formData = new FormData(this);
 
-    // Redirect to WhatsApp
-    window.open(whatsappURL, '_blank');
-    return false;
+    try {
+      // Send data using fetch
+      const response = await fetch('contactform/contactFrom.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.text(); // Get server response
+      var responseMessage = $('#responseMessage');
+
+      // Clear previous alert classes
+      responseMessage.removeClass('alert-success alert-danger');
+
+      if (response.ok) {
+        responseMessage.addClass('alert alert-success');
+        responseMessage.text('¡Correo enviado exitosamente!');
+        form[0].reset(); // Reset the form
+      } else {
+        responseMessage.addClass('alert alert-danger');
+        responseMessage.text(`Error: ${result}`);
+      }
+
+      responseMessage.show();
+
+      // Hide the message after 10 seconds
+      setTimeout(() => {
+        responseMessage.fadeOut();
+      }, 10000);
+    } catch (error) {
+      var responseMessage = $('#responseMessage');
+      responseMessage.removeClass('alert-success').addClass('alert alert-danger');
+      responseMessage.text('Error al enviar el formulario. Intente nuevamente.');
+      responseMessage.show();
+
+      // Hide the message after 10 seconds
+      setTimeout(() => {
+        responseMessage.fadeOut();
+      }, 10000);
+
+      console.error('Error al enviar el formulario:', error);
+    }
   });
-
 });
